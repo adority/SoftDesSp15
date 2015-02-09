@@ -1,0 +1,3 @@
+The gene finder returned amino acid chains that corresponded to the invasion protein invJ, as well as surface presentation of antigen proteins spaL, spaS, spaR, and spaO. Salmonella has some amino acid chains that are homologous to chains in the similar bacteria Shigella, or almost homologous- spaL is one of these, so taken alone we couldn't be very confident that these amino acids belonged to Salmonella and not Shigella. However, spaO is only 24% similar to Shigella and spaR and spaS are not at all, so we can be reasonably confident that the amino acids are those of Salmonella.
+
+

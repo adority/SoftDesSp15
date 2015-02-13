@@ -161,7 +161,7 @@ def longest_ORF(dna):
     """ Finds the longest ORF on both strands of the specified DNA and returns it
         as a string
 
-        This is a sufficient test because since the longest ORF is on the other strand, we can assume it checked both.
+        We should test both strands to make sure it checked for ORFs in both.
     >>> longest_ORF("ATGCGAATGTAGCATCAAA")
     'ATGCTACATTCGCAT'
     >>> longest_ORF("TTTGATGCTACATTCGCAT")

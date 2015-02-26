@@ -227,36 +227,36 @@ def coding_strand_to_AA(dna):
         i += 3
     return a_as
 
-def gene_finder(dna):
-<<<<<<< HEAD
-    """ Returns the amino acid sequences coded by all genes that have an ORF
-        larger than the specified threshold.
+# def gene_finder(dna):
+#     <<<<<<< HEAD
+#     """ Returns the amino acid sequences coded by all genes that have an ORF
+#         larger than the specified threshold.
         
-        dna: a DNA sequence
-        threshold: the minimum length of the ORF for it to be considered a valid
-                   gene.
-        returns: a list of all amino acid sequences whose ORFs meet the minimum
-                 length specified.
-        Unit testing this will be difficult since longest_ORF_noncoding is going to return a threshold equal to the length of the initial dna strand for short strands;
-        therefore none of the ORFs in the DNA will exceed the threshold. For longer strands of DNA, it's easier just to try the code and see if it returns reasonable strings
-        of amino acids.
-=======
-    """ Returns the amino acid sequences that are likely coded by the specified dna
+#         dna: a DNA sequence
+#         threshold: the minimum length of the ORF for it to be considered a valid
+#                    gene.
+#         returns: a list of all amino acid sequences whose ORFs meet the minimum
+#                  length specified.
+#         Unit testing this will be difficult since longest_ORF_noncoding is going to return a threshold equal to the length of the initial dna strand for short strands;
+#         therefore none of the ORFs in the DNA will exceed the threshold. For longer strands of DNA, it's easier just to try the code and see if it returns reasonable strings
+#         of amino acids.
+#     =======
+#     """ Returns the amino acid sequences that are likely coded by the specified dna
         
-        dna: a DNA sequence
-        returns: a list of all amino acid sequences coded by the sequence dna.
->>>>>>> b0aafddda8e55dc5bcad47f06e0e175a5fee679e
-    """
-    aminos=[]
-    threshold=longest_ORF_noncoding(dna, 1500)
-    ORFs=find_all_ORFs_both_strands(dna)
-    for ORF in ORFs:
-        if len(ORF)>threshold:
-            aminos.append(coding_strand_to_AA(ORF))
-    return aminos
+#         dna: a DNA sequence
+#         returns: a list of all amino acid sequences coded by the sequence dna.
+#     >>>>>>> b0aafddda8e55dc5bcad47f06e0e175a5fee679e
+#     """
+#     aminos=[]
+#     threshold=longest_ORF_noncoding(dna, 1500)
+#     ORFs=find_all_ORFs_both_strands(dna)
+#     for ORF in ORFs:
+#         if len(ORF)>threshold:
+#             aminos.append(coding_strand_to_AA(ORF))
+#     return aminos
 
-sequence=load_seq("./data/X73525.fa")
-gene_finder(sequence)
+# sequence=load_seq("./data/X73525.fa")
+# gene_finder(sequence)
 
 # -*- coding: utf-8 -*-
 """

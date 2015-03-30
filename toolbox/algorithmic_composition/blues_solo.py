@@ -29,8 +29,24 @@ solo = AudioStream(sampling_rate, 1)
 """ these are the piano key numbers for a 3 octave blues scale in A
 	See: http://en.wikipedia.org/wiki/Blues_scale """
 blues_scale = [25, 28, 30, 31, 32, 35, 37, 40, 42, 43, 44, 47, 49, 52, 54, 55, 56, 59, 61]
-beats_per_minute = 45				# Let's make a slow blues solo
+beats_per_minute = 100				# Let's make a slow blues solo
 
-add_note(solo, bass, blues_scale[0], 1.0, beats_per_minute, 1.0)
+curr_note = 0
+curr_volume = 1
+#add_note(solo,bass,blues_scale[curr_note],0.5,beats_per_minute,1.0)
+licks = [[[1,0.5],[1,0.5],[1,0.5],[1,1]],[[-1,.5],[-1,.5],[-1,.5],[-1,1]],[[2,1],[-1,0.5],[-1,1]], [[1,1],[0,0.5],[-1,1]], [[1,.5],[1,.5],[2,1]], [[-1,.5],[1,.5],[-1,1]], [[1,.5],[2,.5],[-2,1]]]
+for i in range(10):
+    random_number = choice([0, 1, 2, 3, 4, 5, 6])
+    volume_change = choice([-.1,0,.1])
+    lick = licks[random_number]
+    add_note(solo,bass,blues_scale[curr_note],0.5,beats_per_minute,1.0)
+    for note in lick:
+        curr_volume += volume_change
+        curr_note += note[0]
+        if curr_note <0:
+            curr_note = 19-curr_note
+        if curr_note >18:
+            curr_note = curr_note - 19
+        add_note(solo,bass,blues_scale[curr_note],note[1],beats_per_minute,curr_volume)
 
 solo >> "blues_solo.wav"

@@ -99,15 +99,18 @@ known = {}
 def levenshtein_distance(message, goal_text):
     a = len(message)
     b = len(goal_text)
-    entry = (10*a)+b
+    keycode = [message, goal_text]
+    entry = tuple(keycode)
     if entry in known:
         return known[entry]
     if a == 0:
         return b
-    if b == 0:
+    elif b == 0:
         return a
     res = min([int(message[0] != goal_text[0]) + levenshtein_distance(message[1:],goal_text[1:]), 1+levenshtein_distance(message[1:],goal_text),1+levenshtein_distance(message,goal_text[1:])])
-    known[(10*a)+b] = res
+    keycode = [message, goal_text]
+    entry = tuple(keycode)
+    known[entry] = res
     return res
 
 def evaluate_text(message, goal_text, verbose=VERBOSE):
@@ -140,7 +143,7 @@ def mutate_text(message, prob_ins=0.05, prob_del=0.05, prob_sub=0.05):
         position = random.choice(range(len(message)))
         message.insert(position, letter)
 
-    if random.random() < prob_del and len(message) <0:
+    if random.random() < prob_del and len(message) < 0:
         position = random.choice(range(len(message)))
         message.pop(position)
 
@@ -227,7 +230,7 @@ if __name__ == "__main__":
     if len(sys.argv) == 1:
         # Default goal of the evolutionary algorithm if not specified.
         # Pretty much the opposite of http://xkcd.com/534
-        goal = "SKYNET IS NOW ONLINE"
+        goal = "THE ANSWER IS FORTY TWO"
     else:
         goal = " ".join(sys.argv[1:])
 

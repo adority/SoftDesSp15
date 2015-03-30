@@ -95,6 +95,21 @@ class Message(list):
 # TODO: Implement levenshtein_distance function (see Day 9 in-class exercises)
 # HINT: Now would be a great time to implement memoization if you haven't
 
+known = {}
+def levenshtein_distance(message, goal_text):
+    a = len(message)
+    b = len(goal_text)
+    entry = (10*a)+b
+    if entry in known:
+        return known[entry]
+    if a == 0:
+        return b
+    if b == 0:
+        return a
+    res = min([int(message[0] != goal_text[0]) + levenshtein_distance(message[1:],goal_text[1:]), 1+levenshtein_distance(message[1:],goal_text),1+levenshtein_distance(message,goal_text[1:])])
+    known[(10*a)+b] = res
+    return res
+
 def evaluate_text(message, goal_text, verbose=VERBOSE):
     """
     Given a Message and a goal_text string, return the Levenshtein distance
@@ -121,10 +136,20 @@ def mutate_text(message, prob_ins=0.05, prob_del=0.05, prob_sub=0.05):
     """
 
     if random.random() < prob_ins:
-        # TODO: Implement insertion-type mutation
-        pass
+        letter = random.choice(VALID_CHARS)
+        position = random.choice(range(len(message)))
+        message.insert(position, letter)
 
-    # TODO: Also implement deletion and substitution mutations
+    if random.random() < prob_del and len(message) <0:
+        position = random.choice(range(len(message)))
+        message.pop(position)
+
+    if random.random() < prob_sub:
+        letter = random.choice(VALID_CHARS)
+        position = random.choice(range(len(message)))
+        message.pop(position)
+        message.insert(position, letter)
+        
     # HINT: Message objects inherit from list, so they also inherit
     #       useful list methods
     # HINT: You probably want to use the VALID_CHARS global variable
